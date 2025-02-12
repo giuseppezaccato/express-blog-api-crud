@@ -75,10 +75,11 @@ function destroy(req, res) {
     }
 
     //Rimuoviamo il post
-    posts.splice(posts.indexOf(deletedPost), 1)
+    posts.splice(posts.indexOf(deletedPost), 1);
+
 
     //Restituiamo lo stato corretto
-    res.sendStatus(204)
+    res.sendStatus(204, console.log(posts))
 
 };
 
