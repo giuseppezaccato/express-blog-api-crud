@@ -42,7 +42,29 @@ function show(req, res) {
 
 //* store (create) (piu in uso in un ambiente database)
 function store(req, res) {
-    res.send('Creazione nuovo post');
+    // res.send('Creazione nuovo post');
+
+    //task un nuovo id incrementando l'ultimo
+    const newId = posts[posts.length - 1].id + 1;
+
+    //task nuovo obj post
+    const newPost = {
+        id: newId,
+        titolo: req.body.titolo,
+        contenuto: req.body.contenuto,
+        immagine: req.body.immagine,
+        tags: req.body.tags
+    }
+
+    //task push newPost a posts
+    posts.push(newPost);
+
+    //* controllo
+    console.log(posts);
+
+    //task res=>status corretto e newPost
+    res.status(201);
+    res.json(newPost);
 };
 
 //* update (update)
