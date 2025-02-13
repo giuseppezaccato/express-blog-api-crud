@@ -15,6 +15,11 @@ app.use(express.static('public'));
 //* tutte le rotte definite all'interno del modulo postsRouter saranno accessibili sotto il PREFISSO "/posts"
 app.use("/posts", postRouter);
 
+// //task home landing page TEST
+// app.get("/", (res, req) => {
+//     res.send(`il mio blog`);
+// });
+
 //task avvio il server e lo lascio in ascolto su "port" (3000)
 app.listen(port, () => {
     console.log(`app listening on http://localhost:${port}`);

@@ -11,11 +11,9 @@ function index(req, res) {
     //faccio coincidere filteredPosts con l'array iniziale
     let filteredPosts = posts;
 
-    // Se la richiesta contiene un filtro(req.query.tags = true/false => booleano), allora filtriamo i post
+    // Se la richiesta contiene un filtro(req.query.tags = true/false => booleano), allora entriamo nell'IF
     if (req.query.tags) {
-        filteredPosts = posts.filter(
-            post => post.tags.includes(req.query.tags)
-        );
+        filteredPosts = posts.filter(post => post.tags.includes(req.query.tags));
     }
 
     // restituisco l'array filteredPosts, filtrato o meno!
@@ -28,17 +26,17 @@ function show(req, res) {
     // console.log(req.params.id); //* "req.params.id" ==> è un modo per accedere a parametri che vengono passati nell'URL di una richiesta in maniera dinamica!
     // res.json(posts[req.params.id]);
 
-    const findPost = posts.find((post) => post.id === parseInt(req.params.id))
+    const postFound = posts.find((post) => post.id === parseInt(req.params.id))
 
     //controllo
-    if (!findPost) {
+    if (!postFound) {
         return res.json({
             error: "Not Found",
             message: "Post non trovato"
         })
     }
 
-    res.json(findPost)
+    res.json(postFound)
 
 };
 
@@ -64,9 +62,7 @@ function destroy(req, res) {
 
     //controllo
     if (!deletedPost) {
-
-        res.status(404);
-
+        res.status(404)
         return res.json({
             status: 404,
             error: "Not Found",
@@ -77,9 +73,11 @@ function destroy(req, res) {
     //Rimuoviamo il post
     posts.splice(posts.indexOf(deletedPost), 1);
 
+    //ritorno un console log dell'array SENZA il post appena eliminato
+    console.log(posts)
 
     //Restituiamo lo stato corretto
-    res.sendStatus(204, console.log(posts))
+    res.sendStatus(204)
 
 };
 
