@@ -8,6 +8,8 @@ function index(req, res) {
     //* logica dell'index
     // res.json(posts);// lista di tutti i post (o un filtro) in formato json
 
+    // fakeFunction() //?controllo per vedere il funzionamento di errorsHandler su app.js
+
     //task faccio coincidere filteredPosts con l'array iniziale
     let filteredPosts = posts;
 
