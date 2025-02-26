@@ -2,22 +2,24 @@
 //task importo express
 const express = require("express");
 const app = express();
-const port = 3000;
-
-
-
-
 //task importo CORS
 const cors = require("cors")
+const port = 3000;
+
+//task importo direttamente il modulo corrispondente all'esportazione di posts.js=> blog
+const postRouter = require("./routers/posts");
 
 //task importo i middlewares
 const errorsHandler = require("./middlewares/errorsHandler");
 const notFound = require("./middlewares/notFound");
 
+//! è necessario che il middleware CORS sia posizionato prima di definire rotte 
+//!     come app.use("/posts", postRouter) e prima di middleware come express.json()
 
-//task importo direttamente il modulo corrispondente all'esportazione di posts.js=> blog
-const postRouter = require("./routers/posts");
-
+//task CORS middleware
+app.use(cors({
+    origin: "http://localhost:5173" //* porta "classica" di react
+}))
 
 //task accesso all'asset statico "public"
 app.use(express.static('public'));
@@ -36,11 +38,6 @@ app.use("/posts", postRouter);
 // app.get("/", (res, req) => {
 //     res.send(`il mio blog`);
 // });
-
-//task CORS
-app.use(cors({
-    origin: "http://localhost:5173"
-}))
 
 //? entrambi forniscono un errore di tipo diverso in riferimento all'intercettazione fatta rispettivamente su controller o router
 app.use(errorsHandler);     //* intercetta i possibili errori dell'applicazione => riferimento a "logica=>./controllers/postController.js"
