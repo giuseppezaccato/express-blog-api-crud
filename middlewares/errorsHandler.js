@@ -4,7 +4,7 @@
 
 function errorsHandler(err, req, res, next) {
 
-    res.status(500)
+    res.status(500) //*errore lato server
 
     res.json({
         error: err.message, //? singola chiave il cui valore è l'estrapolazione del messaggio di errore (err.message)

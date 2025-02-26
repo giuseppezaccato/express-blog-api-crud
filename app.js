@@ -5,6 +5,11 @@ const app = express();
 const port = 3000;
 
 
+
+
+//task importo CORS
+const cors = require("cors")
+
 //task importo i middlewares
 const errorsHandler = require("./middlewares/errorsHandler");
 const notFound = require("./middlewares/notFound");
@@ -20,6 +25,7 @@ app.use(express.static('public'));
 //task body-parse
 app.use(express.json());
 
+
 //task "monto" il router postsRouter sul percorso /posts
 //* tutte le rotte definite all'interno del modulo postsRouter saranno accessibili sotto il PREFISSO "/posts"
 //! RICORDA questo "middleware" va scritto sempre dopo il body-parse ma PRIMA degli ERRORI : "errorHandler" e "notFound"
@@ -31,6 +37,10 @@ app.use("/posts", postRouter);
 //     res.send(`il mio blog`);
 // });
 
+//task CORS
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
 
 //? entrambi forniscono un errore di tipo diverso in riferimento all'intercettazione fatta rispettivamente su controller o router
 app.use(errorsHandler);     //* intercetta i possibili errori dell'applicazione => riferimento a "logica=>./controllers/postController.js"
