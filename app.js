@@ -31,7 +31,7 @@ app.use(express.json());
 //task "monto" il router postsRouter sul percorso /posts
 //* tutte le rotte definite all'interno del modulo postsRouter saranno accessibili sotto il PREFISSO "/posts"
 //! RICORDA questo "middleware" va scritto sempre dopo il body-parse ma PRIMA degli ERRORI : "errorHandler" e "notFound"
-app.use("/posts", postRouter);
+app.use("/api/posts", postRouter);
 
 
 // //task home landing page TEST non necessario

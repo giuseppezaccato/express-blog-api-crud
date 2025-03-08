@@ -2,6 +2,7 @@
 //task importo i posts da data.js
 const posts = require("../data/data")
 
+
 //* index (read)
 function index(req, res) {
 
